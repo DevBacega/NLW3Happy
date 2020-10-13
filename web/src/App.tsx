@@ -1,14 +1,9 @@
 import React from 'react';
-
+import './styles/global.css';
+import Routes from './routes';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>
-          Hello World NLW
-        </h1>
-      </header>
-    </div>
+   <Routes />
   );
 }
 
