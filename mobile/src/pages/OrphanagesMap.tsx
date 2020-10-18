@@ -19,11 +19,14 @@ const OrphanagesMap: React.FC = () => {
   const [orphanages, setOrphanages] = useState<Orphanage[]>([]);
   const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
   const navigation = useNavigation();
-  useFocusEffect(() => {
-    api.get('orphanages').then(response => {
-      setOrphanages(response.data);
-    });
-  });
+
+  useFocusEffect(
+    useCallback(() => {
+      api.get('orphanages').then(response => {
+        setOrphanages(response.data);
+      });
+    }, []),
+  );
 
   const currentLocation = useCallback(async () => {
     const { status } = await Location.requestPermissionsAsync();
@@ -32,6 +35,7 @@ const OrphanagesMap: React.FC = () => {
     }
     const location = await Location.getCurrentPositionAsync({});
     const { latitude, longitude } = location.coords;
+    console.log('oii');
     setPosition({ latitude, longitude });
   }, []);
 
@@ -48,7 +52,6 @@ const OrphanagesMap: React.FC = () => {
   return (
     <View style={styles.container}>
       <MapView
-        provider={PROVIDER_GOOGLE}
         style={styles.map}
         initialRegion={{
           latitude: -22.7219274,

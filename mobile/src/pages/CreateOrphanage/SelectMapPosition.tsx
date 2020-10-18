@@ -19,6 +19,7 @@ const SelectMapPosition: React.FC = () => {
     }
     const location = await Location.getCurrentPositionAsync({});
     const { latitude, longitude } = location.coords;
+    console.log('oi');
     setLocation({ latitude, longitude });
   }, []);
 
