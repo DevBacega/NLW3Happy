@@ -68,8 +68,6 @@ export default {
       ),
     });
 
-    const finalData = schema.cast(data);
-
     await schema.validate(data, {
       abortEarly: false,
     });
